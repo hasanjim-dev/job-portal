@@ -17,7 +17,7 @@ async function loadJobs(params = {}) {
 function jobCardHTML(job) {
   const posted = new Date(job.created_at).toLocaleDateString();
   return `
-    <a class="card" href="job-details?id=${job.id}">
+   <a class="card" href="job-details.html?id=${job.id}">
       <div class="job-card-top">
         <div>
           <div class="job-title">${job.title}</div>
