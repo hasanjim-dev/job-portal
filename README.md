@@ -1,74 +1,74 @@
-# JobNest — Job Portal
+# JobNest - Job Portal
 
-A full-stack job portal with a MySQL database, JWT authentication, and a separate admin dashboard — built in a dark-purple theme to match your portfolio.
+A full-stack job portal where job seekers can browse and apply for jobs, and admins can post jobs and manage applicants.
+
+**Live Demo:** https://job-portal-smoky-kappa.vercel.app
 
 ## Features
-- Job seekers can register, browse/search jobs, apply, and track application status.
-- Admin account posts jobs, reviews applicants, updates application status, and sees platform stats.
-- Signing in with the admin account routes straight to the Admin Dashboard; job seekers go to their own dashboard.
+
+**Job Seekers**
+- Register and log in securely
+- Browse the latest job openings
+- Search and filter jobs by keyword, job type and location
+- View full job details and apply
+- Personal dashboard to track applications
+
+**Admin**
+- Admin dashboard with role-based access
+- Post, edit and delete jobs
+- View applicants for each job
+- View all registered job seekers
 
 ## Tech Stack
-- **Backend:** Node.js, Express, MySQL (mysql2), JWT auth, bcrypt password hashing
-- **Frontend:** Plain HTML/CSS/JavaScript (no framework/build step needed)
+
+- **Frontend:** HTML, CSS, JavaScript (hosted on Vercel)
+- **Backend:** Node.js, Express.js (hosted on Railway)
+- **Database:** MySQL (hosted on Railway)
+- **Authentication:** JWT, bcrypt password hashing
 
 ## Project Structure
+
 ```
 job-portal/
-  backend/
-    config/db.js          MySQL connection pool
-    controllers/           Route logic (auth, jobs, applications, admin)
-    middleware/auth.js      JWT verification + admin guard
-    routes/                 Express routers
-    database/schema.sql     Table definitions
-    database/seed.js        Creates the default admin account
-    server.js
-    .env.example
-  frontend/
-    index.html, login.html, register.html, job-details.html,
-    dashboard.html (job seeker), admin.html (admin dashboard)
-    css/style.css           Dark purple theme
-    js/                     API calls + page logic
+├── frontend/      # Static pages, CSS and JS
+└── backend/
+    ├── config/        # Database connection
+    ├── controllers/   # Route logic
+    ├── middleware/    # Auth and admin checks
+    ├── routes/        # API routes
+    └── database/      # schema.sql and seed.js
 ```
 
-## Setup
+## Run Locally
 
-### 1. Database
-Make sure MySQL is running locally, then:
+1. Clone the repository
 ```bash
-mysql -u root -p < backend/database/schema.sql
+   git clone <your-repo-url>
+   cd job-portal/backend
 ```
-This creates the `job_portal` database with all tables.
-
-### 2. Backend
+2. Install dependencies
 ```bash
-cd backend
-npm install
-cp .env.example .env      # then edit .env with your MySQL password and a JWT secret
-npm run seed               # creates the default admin account
-npm run dev                 # starts the API on http://localhost:5000
+   npm install
 ```
-
-**Default admin login:**
-- Email: `admin@jobportal.com`
-- Password: `Admin@123`
-
-Change this password after first login (or edit `database/seed.js` before seeding).
-
-### 3. Frontend
-The frontend is plain static HTML/CSS/JS — no build step. Easiest way to run it:
+3. Create a MySQL database and import `database/schema.sql`
+4. Copy `.env.example` to `.env` and fill in your database and JWT details
+5. (Optional) Run `node database/seed.js` to create an admin account
+6. Start the server
 ```bash
-cd frontend
-npx serve .
+   npm start
 ```
-Or just open `index.html` directly in your browser, or use the VS Code "Live Server" extension.
+7. Open `frontend/index.html` in a browser, and set `API_BASE` in `frontend/js/api.js` to `http://localhost:5000/api`
 
-By default the frontend calls the API at `http://localhost:5000/api` — change `API_BASE` in `frontend/js/api.js` if you deploy the backend elsewhere.
+## API Overview
 
-## Deploying
-- **Backend:** Render, Railway, or any Node host with a MySQL add-on (PlanetScale, Railway MySQL, etc.)
-- **Frontend:** Vercel/Netlify (static hosting) — same as your portfolio site. Just remember to update `API_BASE` to your deployed backend URL.
+| Route | Purpose |
+|-------|---------|
+| `/api/auth` | Register and login |
+| `/api/jobs` | List, view, create, update, delete jobs |
+| `/api/applications` | Apply for jobs and view applications |
+| `/api/admin` | Admin-only data (applicants, users) |
 
-## Notes
-- Passwords are hashed with bcrypt; never stored in plain text.
-- JWT tokens are stored in `localStorage` and sent as `Authorization: Bearer <token>`.
-- Roles are enforced both in the UI (page redirects) and on the backend (middleware) — the backend is the real gatekeeper.
+## Author
+
+**Muntasir Hasan Jim**
+Portfolio: https://muntasirhasanjim.vercel.app
