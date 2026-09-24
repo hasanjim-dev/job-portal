@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Environment variables (sensitive - never push these)
+.env
+backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

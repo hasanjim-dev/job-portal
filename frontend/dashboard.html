@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard | JobNest</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand">Job<span>Nest</span></div>
+  <div class="nav-links">
+    <a href="index.html">Browse Jobs</a>
+    <div id="nav-auth-slot" style="display:flex; gap:12px; align-items:center;"></div>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <a href="dashboard.html" class="active">My Applications</a>
+    <a href="index.html">Browse Jobs</a>
+  </aside>
+  <main class="dash-main">
+    <h2 class="section-title">My Applications</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Job</th><th>Company</th><th>Applied</th><th>Status</th></tr></thead>
+        <tbody id="apps-body"><tr><td colspan="4">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

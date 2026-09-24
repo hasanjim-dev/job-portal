@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | JobNest</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand">Job<span>Nest</span> <span style="font-size:0.7rem; color: var(--purple-light); border:1px solid var(--purple); padding:2px 8px; border-radius:999px; margin-left:8px;">ADMIN</span></div>
+  <div class="nav-links">
+    <a href="index.html">View Site</a>
+    <div id="nav-auth-slot" style="display:flex; gap:12px; align-items:center;"></div>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <a href="#" data-tab="overview" class="tab-link active">Overview</a>
+    <a href="#" data-tab="jobs" class="tab-link">Manage Jobs</a>
+    <a href="#" data-tab="post" class="tab-link">Post a Job</a>
+    <a href="#" data-tab="applicants" class="tab-link">Applicants</a>
+    <a href="#" data-tab="users" class="tab-link">Job Seekers</a>
+  </aside>
+  <main class="dash-main">
+
+    <div id="tab-overview" class="tab-content">
+      <h2 class="section-title">Overview</h2>
+      <div class="stat-grid" id="stat-grid">
+        <div class="stat-card"><div class="num">-</div><div class="label">Loading...</div></div>
+      </div>
+    </div>
+
+    <div id="tab-jobs" class="tab-content" style="display:none;">
+      <h2 class="section-title">Manage Jobs</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Title</th><th>Company</th><th>Type</th><th>Status</th><th>Applicants</th><th>Actions</th></tr></thead>
+          <tbody id="jobs-body"><tr><td colspan="6">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-post" class="tab-content" style="display:none;">
+      <h2 class="section-title">Post a New Job</h2>
+      <div class="card" style="max-width: 640px;">
+        <div id="post-msg"></div>
+        <form id="post-form">
+          <div class="field"><label>Job Title</label><input type="text" id="title" required></div>
+          <div class="field"><label>Company Name</label><input type="text" id="company_name" required></div>
+          <div class="field"><label>Location</label><input type="text" id="location" required></div>
+          <div class="field"><label>Job Type</label>
+            <select id="job_type">
+              <option>Full-time</option><option>Part-time</option><option>Remote</option>
+              <option>Internship</option><option>Contract</option>
+            </select>
+          </div>
+          <div class="field"><label>Category</label><input type="text" id="category" placeholder="e.g. Engineering, Design, Marketing"></div>
+          <div class="field"><label>Salary Range</label><input type="text" id="salary_range" placeholder="e.g. $60,000 - $80,000"></div>
+          <div class="field"><label>Description</label><textarea id="description" required></textarea></div>
+          <div class="field"><label>Requirements</label><textarea id="requirements"></textarea></div>
+          <button class="btn btn-primary" type="submit">Publish Job</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="tab-applicants" class="tab-content" style="display:none;">
+      <h2 class="section-title">Applicants</h2>
+      <div class="field" style="max-width:340px;">
+        <label>Select a job to view applicants</label>
+        <select id="applicant-job-select"></select>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Resume</th><th>Status</th><th>Update</th></tr></thead>
+          <tbody id="applicants-body"><tr><td colspan="5">Select a job above.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-users" class="tab-content" style="display:none;">
+      <h2 class="section-title">Registered Job Seekers</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th></tr></thead>
+          <tbody id="users-body"><tr><td colspan="4">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

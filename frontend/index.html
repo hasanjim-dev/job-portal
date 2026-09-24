@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobNest | Find Your Next Opportunity</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand">Job<span>Nest</span></div>
+  <div class="nav-links">
+    <a href="index.html">Browse Jobs</a>
+    <div id="nav-auth-slot" style="display:flex; gap:12px; align-items:center;"></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge"><span class="dot"></span> 500+ active openings this week</div>
+  <h1>Find a job that <span class="gradient">actually fits you</span></h1>
+  <p>Browse curated openings from real companies, apply in one click, and track every application from a single dashboard.</p>
+  <div class="hero-actions">
+    <a href="#job-list" class="btn btn-primary">Browse Jobs</a>
+    <a href="register.html" class="btn btn-outline">Create Account</a>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Job title, company, or keyword...">
+    <select id="type-filter">
+      <option value="">All Types</option>
+      <option>Full-time</option>
+      <option>Part-time</option>
+      <option>Remote</option>
+      <option>Internship</option>
+      <option>Contract</option>
+    </select>
+    <input type="text" id="location-filter" placeholder="Location">
+    <button class="btn btn-primary btn-sm" id="search-btn">Search</button>
+  </div>
+</section>
+
+<section class="section container" id="job-list">
+  <h2 class="section-title">Latest Openings</h2>
+  <div class="job-grid" id="job-grid">
+    <p style="color: var(--text-muted);">Loading jobs...</p>
+  </div>
+</section>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up | JobNest</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand">Job<span>Nest</span></div>
+  <div class="nav-links"><a href="index.html">Browse Jobs</a></div>
+</nav>
+<div class="auth-wrap">
+  <div class="form-card">
+    <h2>Create your account</h2>
+    <p class="sub">Sign up as a job seeker to start applying.</p>
+    <div id="msg"></div>
+    <form id="register-form">
+      <div class="field"><label>Full Name</label><input type="text" id="full_name" required></div>
+      <div class="field"><label>Email</label><input type="email" id="email" required></div>
+      <div class="field"><label>Phone (optional)</label><input type="text" id="phone"></div>
+      <div class="field"><label>Password</label><input type="password" id="password" required minlength="6"></div>
+      <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+    </form>
+    <div class="form-footer">Already have an account? <a href="login.html" style="color: var(--purple-light);">Log in</a></div>
+  </div>
+</div>
+<script src="js/api.js"></script>
+<script>
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('msg');
+  msg.innerHTML = '';
+  try {
+    const data = await apiRequest('/auth/register', {
+      method: 'POST',
+      body: {
+        full_name: document.getElementById('full_name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        password: document.getElementById('password').value
+      }
+    });
+    saveSession(data.token, data.user);
+    window.location.href = 'dashboard.html';
+  } catch (err) {
+    msg.innerHTML = `<div class="alert alert-error">${err.message}</div>`;
+  }
+});
+</script>
+</body>
+</html>
