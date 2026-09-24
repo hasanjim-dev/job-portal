@@ -1,5 +1,5 @@
 // Change this if your backend runs on a different host/port
-const API_BASE = 'job-portal-production-a010.up.railway.app';
+const API_BASE = 'https://job-portal-production-a010.up.railway.app/';
 
 function getToken() { return localStorage.getItem('jp_token'); }
 function getUser() { return JSON.parse(localStorage.getItem('jp_user') || 'null'); }
